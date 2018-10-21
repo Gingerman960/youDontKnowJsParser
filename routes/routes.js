@@ -1,12 +1,9 @@
+const request = require('request-promise-native');
+
 const appRouter = function (app) {
-    app.get("/", function(req, res) {
-        res.status(200).send(JSON.stringify({home: 'someData'}));
-    });
-    app.get("/site", function(req, res) {
-        res.status(200).send(JSON.stringify({user: 'someData'}));
-    });
-    app.get("/data", function(req, res) {
-        res.status(200).send(JSON.stringify({data: 'someData'}));
+    app.get("/", async function(req, res) {
+        const data = await request.get('https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance/README.md');
+        res.json(data);
     });
 }
 
